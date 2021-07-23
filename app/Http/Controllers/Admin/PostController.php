@@ -26,7 +26,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -37,7 +37,18 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $newPost = new Post();
+
+        $newPost->title = $data['title'];
+        $newPost->author = $data['author'];
+        $newPost->slug = $data['title'] . '-' . $data['author'];
+        $newPost->content = $data['content'];
+        $newPost->post_date = $data['post_date'];
+        $newPost->save();
+
+        return redirect()->route('admin.posts.index', $newPost->id);
     }
 
     /**

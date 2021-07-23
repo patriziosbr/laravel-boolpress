@@ -34,7 +34,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.posts.index') }}">list data</a>
+                            <a class="nav-link {{Route::currentRouteName() == 'admin.posts.index' ? 'active' : '' }}" href="{{ route('admin.posts.index') }}">list data</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{Route::currentRouteName() == 'admin.posts.create' ? 'active' : '' }}" href="{{ route('admin.posts.create') }}">Add post</a>
                         </li>
                     </ul>
 
