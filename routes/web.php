@@ -13,10 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware('auth') //autenticazione
+    ->namespace('Admin') //-> direttiva al path Admin/HomeController
+    ->name('admin.') // direttiva alla route admin.pizzas.index admin.fakes.show
+    ->prefix('admin') //url rotte
+    ->group(function() {
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::resource('posts', 'PostController');	
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+
+
