@@ -28,7 +28,13 @@
                     <td>
                       <a class="btn btn-warning" href="{{ route('admin.posts.edit', $post->id) }}">EDIT</a>
                     </td>
-                    <td>DELETE</td>
+                    <td>
+                      <form action=" {{ route('admin.posts.destroy', $post->id)}} " method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <input class="btn btn-danger" type="submit" onclick="return confirm('Do you want delete this post? this action can\'tn be undone')" value="DELETE">
+                      </form>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

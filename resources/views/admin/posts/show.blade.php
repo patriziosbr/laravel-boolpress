@@ -9,7 +9,7 @@
             <p>
                 {{ $post->content }}
             </p>
-            <h6><strong>Author: </strong>{{ $post->title }}</h6>
+            <h6><strong>Author: </strong>{{ $post->author }}</h6>
             <h6><strong>Published date: </strong>{{ $post->post_date }}</h6>
 
         </div>
