@@ -37,19 +37,21 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $data = $request->all();
-
+    {   
+        dump($request);
         //add validate([])
-        $validated = $request->validate(
+        $request->validate(
             [
-                'title' => 'required|max:255',
-                'author' => 'required|max:255',
-                // 'slug' => 'required|max:255',
+                'title' => 'required',
+                'author' => 'required',
+                //'slug' => 'required|max:255',
                 'content' => 'required',
-                'date' => 'required'
+                'post_date' => 'required'
             ]
         );
+
+        $data = $request->all();
+
 
         $newPost = new Post();
 
@@ -75,8 +77,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //$post = Post::findOrfail($id);
-        // return view('admin.posts.show', compact('post'));
+        $post = Post::findOrfail($id);
+        return view('admin.posts.show', compact('post'));
     }
 
     /**
@@ -85,9 +87,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**

@@ -22,7 +22,9 @@
                     <td>{{ $post->title }}</td>
                     <td>{{ $post->author }}</td>
                     <td>{{ $post->post_date }}</td>
-                    <td>SHOW</td>
+                    <td>
+                      <a class="btn btn-info" href="{{ route('admin.posts.show', $post->id) }}">SHOW</a>
+                    </td>
                     <td>EDIT</td>
                     <td>DELETE</td>
                 </tr>
