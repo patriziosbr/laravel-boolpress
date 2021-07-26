@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //ROTTE per autenticazione 
-// Auth::routes(); register = false / verify = false
+// Auth::routes(['register' => false]); verify => false
+
 Auth::routes();
 
 
@@ -27,14 +28,15 @@ Route::middleware('auth') //autenticazione
 });
 
 //rotte pubbliche
-Route::get('/', 'HomeController@index')->name('home');
+// Route::get('/', 'HomeController@index')->name('home');
 
 // Rotta di fallback - {rotta parametrica} - se c'è questa levo la rotta pubblica 
 // rotta di fallback sempre per ultima dopo admin
 
 // Route::get("{any?}", function() {
-    //return view("guest.home");
-//})->where("any", ".*");
+//     return view("guest.home");
+// })->where("any", ".*");
 
-// Route::get("{any?}", "HomeController@index")->where("any", ".*");
+//questa rotta è uguale alla self closing
+Route::get("{any?}", "HomeController@index")->where("any", ".*")->name('home');
 //potrebbe servire ->name('home');
