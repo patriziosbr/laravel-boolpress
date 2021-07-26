@@ -1,29 +1,30 @@
 @extends('layouts.app')
 
-{{-- @dd($posts) --}}
+{{-- @dd($post) --}}
 
 @section('content')
     <div class="container">
-        <h1>Edit post: {{ $xxx->title }}</h1>
-        <form action="{{ route('admin.posts.store') }}" method="POST" >
+        <h1>Edit post: {{ $post->title }}</h1>
+        <form action="{{ route('admin.posts.update', $post->id) }}" method="POST" >
             @csrf
+            @method('PATCH')
             <div class="form-group">
                 <label for="title">Title: </label>
-                <input class="form-control" type="text" placeholder="Your post title" id="title" name="title">
+                <input class="form-control" type="text" placeholder="Your post title" id="title" name="title" value="{{ old('title', $post->title) }}">
             </div>
             <div class="form-group">
                 <label for="author">Author: </label>
-                <input class="form-control" type="text" placeholder="Post author" id="author" name="author">
+                <input class="form-control" type="text" placeholder="Post author" id="author" name="author" value="{{ old('author', $post->author) }}">
             </div>
             <div class="form-group">
                 <label for="post_date">Date: </label>
-                <input class="form-control" type="date" id="post_date" name="post_date">
+                <input class="form-control" type="date" id="post_date" name="post_date" value="{{ old('post_date', $post->post_date) }}">
             </div>
             <div class="form-group">
                 <label for="content">Post: </label>
-                <textarea class="form-control" rows="3" id="content" name="content" placeholder="Write your post here"></textarea>
+                <textarea class="form-control" rows="3" id="content" name="content" placeholder="Write your post here">{{ old('content', $post->content) }}</textarea>
             </div>
-            <input class="btn btn-primary" type="submit" value="Post">
+            <input class="btn btn-primary" type="submit" value="Edit">
         </form>
     </div>
 @endsection

@@ -99,9 +99,26 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        
+        $request->validate(
+                [
+                        'title' => 'required',
+                        'author' => 'required',
+                        //'slug' => 'required|max:255',
+                        'content' => 'required',
+                        'post_date' => 'required'
+                    ]
+                );
+        $data = $request->all();
+
+        $slug = $data['title'] . '-' . $data['author'];
+        $post->slug = Str::slug($slug, '-');
+        
+        $post->update($data);
+
+        return redirect()->route('admin.posts.show', compact('post'));
     }
 
     /**
