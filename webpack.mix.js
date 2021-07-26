@@ -13,3 +13,8 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');
+
+    //nel caso di modificare con scss anche backoffice aggiungere rotta
+    // mix.js('resources/js/app.js', 'public/js')
+    //.js('resources/js/front.js', 'public/js')
+    // .sass('resources/sass/app.scss', 'public/css');
