@@ -21,6 +21,17 @@
                 <input class="form-control" type="date" id="post_date" name="post_date" value="{{ old('post_date', $post->post_date) }}">
             </div>
             <div class="form-group">
+                <label for="category_id">Categories: </label>
+                <select name="category_id" id="category_id" class="form-control" >
+                    <option value="">--Nessuna categoria--</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}" {{ ($category->id == old('category_id')) ? 'selected' : '' }}>
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="content">Post: </label>
                 <textarea class="form-control" rows="3" id="content" name="content" placeholder="Write your post here">{{ old('content', $post->content) }}</textarea>
             </div>

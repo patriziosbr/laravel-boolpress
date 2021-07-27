@@ -11,6 +11,11 @@ class Post extends Model
         'author',
         // 'slug',
         'content',
-        'post_date'
+        'post_date',
+        'category_id'
     ];
+    public function category(){
+        //relazione
+        return $this->belongsTo('App\Category');
+    }
 }
