@@ -12,6 +12,7 @@
                 <th scope="col">Title</th>
                 <th scope="col">Author</th>
                 <th scope="col">Post date</th>
+                <th scope="col">Categories</th>
                 <th colspan="3"></th>
               </tr>
             </thead>
@@ -22,6 +23,11 @@
                     <td>{{ $post->title }}</td>
                     <td>{{ $post->author }}</td>
                     <td>{{ $post->post_date }}</td>
+                    <td>
+                      @if ($post->category)
+                          {{ $post->category->name}}
+                      @endif
+                    </td>
                     <td>
                       <a class="btn btn-info" href="{{ route('admin.posts.show', $post->id) }}">SHOW</a>
                     </td>
