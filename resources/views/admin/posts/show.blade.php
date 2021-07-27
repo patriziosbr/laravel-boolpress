@@ -9,6 +9,8 @@
 			<span class="badge badge-info"> nessuna categoria</span>
 		@endif </h1>
         <div class="w-50 m-auto ">
+            <a class="btn btn-secondary mb-4" href="{{ route('admin.posts.index', $post->id) }}">BACK</a>
+            <a class="btn btn-warning mb-4" href="{{ route('admin.posts.edit', $post->id) }}">EDIT</a>
             <h3><strong>Title: </strong>{{ $post->title }}</h3>
             <small><strong>Content: </strong></small>
             <p>

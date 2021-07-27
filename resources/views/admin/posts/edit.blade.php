@@ -2,9 +2,14 @@
 
 {{-- @dd($post) --}}
 
+
 @section('content')
     <div class="container">
-        <h1>Edit post: {{ $post->title }}</h1>
+        <h1>Edit post: {{ $post->title }} @if ($post->category)
+			<a href=" {{ route('admin.categories.show', $post->category->id) }} " class="badge badge-info"> {{ $post->category->name }} </a>
+		@else
+			<span class="badge badge-info"> nessuna categoria</span>
+		@endif </h1>
         <form action="{{ route('admin.posts.update', $post->id) }}" method="POST" >
             @csrf
             @method('PATCH')
