@@ -1,14 +1,14 @@
 @extends('layouts.app')
-@dd($category->post) 
+{{-- @dd($category->posts)  --}}
 {{-- @dump($category) --}}
 
 @section('content')
     <div class="container">
         <h1>{{ $category->name }}</h1>
         <ul class="my-5">
-            @foreach ($category->post as $post)
+            @foreach ($category->posts as $post)
                 <li>
-                    <a href="#">{{ $post->title }}</a>
+                    <a href="{{ route('admin.posts.show', $post->id) }}">{{ $post->title }}</a>
                 </li>
             @endforeach
         </ul>
