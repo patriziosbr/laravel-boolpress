@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 {{-- @dd($post) --}}
-
+{{-- @dump($post->tags) --}}
+{{-- @dump($tags) --}}
 
 @section('content')
     <div class="container">
@@ -37,6 +38,28 @@
                     @endforeach
                 </select>
             </div>
+
+            <div class="form-group">
+                @foreach ($tags as $tag)
+                <div class="d-inline mx-2">
+                    @if($errors->any())
+                        <input  name="tags[]" type="checkbox" id="tag-{{$tag->id}}" value="{{$tag->id}}"
+                            {{ in_array($tag->id, old('tags', [] )) ? 'checked' : '' }} >
+                    @else
+                        <input  name="tags[]" type="checkbox" id="tag-{{$tag->id}}" value="{{$tag->id}}"
+                            {{ $post->tags->contains($tag->id) ? 'checked' : '' }} >
+                    @endif
+                    <label  for="tag-{{$tag->id}}">{{$tag->name}}</label>
+                </div>
+                    @endforeach
+                @error('tags')
+                <div>
+                    <small class="text-danger">{{$message}}</small>
+                </div>
+                @enderror
+            </div>
+
+ 
             <div class="form-group">
                 <label for="content">Post: </label>
                 <textarea class="form-control" rows="3" id="content" name="content" placeholder="Write your post here">{{ old('content', $post->content) }}</textarea>

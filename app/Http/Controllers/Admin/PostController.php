@@ -101,7 +101,8 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::all();
-        return view('admin.posts.edit', compact('post', 'categories'));
+        $tags = Tag::all();
+        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
@@ -115,20 +116,28 @@ class PostController extends Controller
     {
         
         $request->validate(
-                [
-                        'title' => 'required',
-                        'author' => 'required',
-                        //'slug' => 'required|max:255',
-                        'content' => 'required',
-                        'post_date' => 'required'
-                    ]
-                );
+            [
+                'title' => 'required',
+                'author' => 'required',
+                //'slug' => 'required|max:255',
+                'content' => 'required',
+                'post_date' => 'required'
+            ]
+        );
         $data = $request->all();
 
         $slug = $data['title'] . '-' . $data['author'];
         $post->slug = Str::slug($slug, '-');
         
         $post->update($data);
+
+        
+        if(array_key_exists('tags', $data)) {
+            $post->tags()->sync($data["tags"]);	
+        } else {
+            // $post->tags()->detach($data[]);
+            $post->tags()->detach();
+        }
 
         return redirect()->route('admin.posts.show', compact('post'));
     }
