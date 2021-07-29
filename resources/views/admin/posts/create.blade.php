@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 {{-- @dd($posts) --}}
+{{-- @dump($tags) --}}
 
 @section('content')
     <div class="container">
@@ -31,8 +32,17 @@
                 </select>
             </div>
             <div class="form-group">
+                @foreach ($tags as $tag)
+                <div class="d-inline mx-3">
+                    <input type="checkbox" value="{{$tag->id}}" id="tag-{{$tag->id}}" name="tags[]" >
+                    <label for="tag-{{$tag->id}}">{{$tag->name}}</label>
+                </div>
+                @endforeach
+            </div>
+            
+            <div class="form-group">
                 <label for="content">Post: </label>
-                <textarea class="form-control" rows="3" id="content" name="content" placeholder="Write your post here"></textarea>
+                <textarea class="form-control" rows="3" id="content" name="content" placeholder="Write your post here">{{old('content')}}</textarea>
             </div>
             <input class="btn btn-primary" type="submit" value="Post">
         </form>

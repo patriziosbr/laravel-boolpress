@@ -14,7 +14,7 @@ class UpdatePostsTable extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->unsignedInteger('category_id')->nullable()->after('id');
+            $table->unsignedBigInteger('category_id')->nullable()->after('id');
 
 			$table->foreign('category_id')
 			    ->references('id') //colonna
