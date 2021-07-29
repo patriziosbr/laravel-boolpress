@@ -34,10 +34,16 @@
             <div class="form-group">
                 @foreach ($tags as $tag)
                 <div class="d-inline mx-3">
-                    <input type="checkbox" value="{{$tag->id}}" id="tag-{{$tag->id}}" name="tags[]" >
+                    <input type="checkbox" value="{{$tag->id}}" id="tag-{{$tag->id}}" name="tags[]" 
+                    {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }} >
                     <label for="tag-{{$tag->id}}">{{$tag->name}}</label>
                 </div>
                 @endforeach
+                @error('tags')
+                <div>
+                    <small class="text-danger">{{$message}}</small>
+                </div>
+                @enderror
             </div>
             
             <div class="form-group">

@@ -50,13 +50,14 @@ class PostController extends Controller
                 'author' => 'required',
                 //'slug' => 'required|max:255',
                 'content' => 'required',
-                'post_date' => 'required'
+                'post_date' => 'required',
+                'tags' => 'exists:tags,id' //validaizone nel caso di modifica value da ispeziona elemento
             ]
         );
 
         $data = $request->all();
 
-        // dd($data);
+        // dd($data); 
         $newPost = new Post();
 
         $newPost->title = $data['title'];
@@ -69,7 +70,12 @@ class PostController extends Controller
         //al posto di tutto questo che precede 
         // newPost->fill($data); ma c'è da aggiungere la variabile protected $fillable = [];
         $newPost->category_id = $data['category_id'];
+        
         $newPost->save();
+
+        if(array_key_exists('tags', $data)) {
+            $newPost->tags()->attach($data["tags"]);       
+        }
 
         return redirect()->route('admin.posts.index');
     }
