@@ -1921,6 +1921,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1930,13 +1939,32 @@ __webpack_require__.r(__webpack_exports__);
     Header: _js_components_Header_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     WorkVue: _js_components_WorkVue__WEBPACK_IMPORTED_MODULE_0__["default"],
     Footer: _js_components_Footer__WEBPACK_IMPORTED_MODULE_2__["default"]
-  } // data() {
-  //     return {
-  //     }
-  // },
-  // methods: {
-  // }
+  },
+  data: function data() {
+    return {
+      posts: [],
+      subText: ""
+    };
+  },
+  methods: {
+    truncateTxt: function truncateTxt() {
+      var _this = this;
 
+      posts.forEach(function (element) {
+        _this.subText = element.content; // this.subText.substr(1, 150)
+      });
+    }
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    axios.get('http://localhost:8000/api/posts').then(function (res) {
+      console.log(res.data);
+      _this2.posts = res.data;
+    })["catch"](function (err) {
+      console.log(err);
+    });
+  }
 });
 
 /***/ }),
@@ -2042,7 +2070,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "* {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n}", ""]);
+exports.push([module.i, "* {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n}\n.card {\n  width: 200px;\n}", ""]);
 
 // exports
 
@@ -3310,12 +3338,24 @@ var render = function() {
     [
       _c("Header"),
       _vm._v(" "),
-      _c("WorkVue", {
-        attrs: {
-          title: "Vue in progress",
-          subtitle: "set up vue js in laravel"
-        }
-      }),
+      _c(
+        "div",
+        { staticClass: "container d-flex flex-wrap justify-content-center" },
+        _vm._l(_vm.posts, function(post) {
+          return _c("div", { key: post.id, staticClass: "card m-3" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c("h5", { staticClass: "card-title" }, [
+                _vm._v(_vm._s(post.title))
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "card-text" }, [
+                _vm._v(" " + _vm._s(post.content) + " ")
+              ])
+            ])
+          ])
+        }),
+        0
+      ),
       _vm._v(" "),
       _c("Footer")
     ],
@@ -15972,9 +16012,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _App_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./App.vue */ "./resources/js/App.vue");
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
 var app = new Vue({
   el: '#root',
   render: function render(h) {
