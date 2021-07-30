@@ -11,14 +11,23 @@
             <div class="form-group">
                 <label for="title">Title: </label>
                 <input class="form-control" type="text" placeholder="Your post title" id="title" name="title" value="{{old('title')}}">
+                @error('title')
+                    <small class="text-danger">{{$message}}</small>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="author">Author: </label>
                 <input class="form-control" type="text" placeholder="Post author" id="author" name="author" value="{{old('author')}}">
+                @error('author')
+                    <small class="text-danger">{{$message}}</small>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="post_date">Date: </label>
                 <input class="form-control" type="date" id="post_date" name="post_date" value="{{old('post_date')}}">
+                @error('post_date')
+                    <small class="text-danger">{{$message}}</small>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="category_id">Categories: </label>

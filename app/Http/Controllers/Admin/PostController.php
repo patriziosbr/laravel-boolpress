@@ -117,7 +117,7 @@ class PostController extends Controller
         
         $request->validate(
             [
-                'title' => 'required',
+                'title' => 'required|max:255',
                 'author' => 'required',
                 //'slug' => 'required|max:255',
                 'content' => 'required',
