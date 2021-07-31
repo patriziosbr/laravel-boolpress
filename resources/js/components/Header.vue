@@ -2,7 +2,7 @@
   <section>
       <nav class="d-flex align-content-end justify-content-center">
           <ul class="d-flex align-items-center">
-              <li v-for="(links, index) in navLinks" :key="index">
+              <li :class="(links.active) ? 'active' : '' "   v-for="(links, index) in navLinks" :key="index">
                   <a href="#">
                       {{ links.link }}
                   </a>
@@ -20,19 +20,19 @@ export default {
             navLinks: [        
                 {
                     link: 'home',
-                    active: 'true'
+                    active: true
                 },
                 {
                     link: 'Blog',
-                    active: 'false'
+                    active: false
                 },
                 {
                     link: 'chi siamo',
-                    active: 'false'
+                    active: false
                 },
                 {
                     link: 'contatti',
-                    active: 'false'
+                    active: false
                 }
             ] 
         }
@@ -47,13 +47,22 @@ nav {
     background-color: #f1f4f9;
     ul {
         list-style: none;
+        margin: 0;
         
         li {
-            display: inline;
-            padding: 8px 16px;
+            display: inline-block;
+            height: 100%;
             color: #242424;
             text-align: center;
             text-transform: capitalize;
+            display: flex;
+            align-items: flex-end;
+            a {
+                vertical-align: middle;
+                display: inline-block;
+                padding: 8px 16px;
+            }
+            &.active,
             &:hover {
                 background-color: darken($color: #f1f4f9, $amount: 3);
             }

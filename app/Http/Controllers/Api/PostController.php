@@ -9,7 +9,8 @@ use App\Post;
 class PostController extends Controller
 {
     public function index() {
-        $posts = Post::all();
+        $posts = Post::paginate(3); //add in App.vue function axios res.data.data
+        // $posts = Post::all(); // add in App.vue function axios res.data
         return response()->json($posts);
     } 
 }
