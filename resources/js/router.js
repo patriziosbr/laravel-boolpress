@@ -4,12 +4,14 @@ import Home from './pages/Home'
 import Blog from './pages/Blog'
 import About from './pages/About'
 import Contacts from './pages/Contacts'
+import SinglePost from './pages/SinglePost'
 
 
 Vue.use(VueRouter)
 
 const router = new VueRouter({
     mode: 'history',
+    linkActiveClass: 'active',
     routes: [
         {
             path: '/',
@@ -30,7 +32,14 @@ const router = new VueRouter({
             path: '/Contacts',
             name: 'Contacts',
             component: Contacts
+        },
+        {
+            path: '/Blog/:slug',
+            name: 'single-post',
+            component: SinglePost
         }
+
+
     ]
 
 });

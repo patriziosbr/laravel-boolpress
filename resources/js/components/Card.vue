@@ -6,7 +6,8 @@
             <div class="card-body" >
                 <h5 class="card-title">{{ item.title }}</h5>
                 <p class="card-text"> {{ item.extract }} </p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                <router-link :to="{ name: 'single-post', params: { slug: item.slug } }">Go somewhere</router-link>
             </div>
         </div>
     </div>

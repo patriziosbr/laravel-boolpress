@@ -1,0 +1,46 @@
+<template>
+  <div v-if="post">
+      <h3> {{ post.title }}</h3>
+      <p> {{ post.content }} </p>
+      <router-link class="btn btn-info" :to="{ name: 'Blog' } " >Back to Blog</router-link>
+  </div>
+  <div v-else>
+      Loading...
+      <Loader />
+  </div>
+</template>
+
+<script>
+import Loader from '../components/Loader'
+
+export default {
+    name: 'SiglePost',
+    components: {
+        Loader
+    },
+    data() {
+        return {
+            post: null
+        }
+    },
+    created: function() {
+        this.getPost(this.$route.params.slug);
+        // console.log(this.$route.params.slug)
+    },
+    methods: {
+        getPost: function(slug) {
+            axios.get(`http://127.0.0.1:8000/api/posts/${slug}`)
+                .then((result) => {
+                  this.post = result.data;   
+                //   console.log(result.data);  
+                }).catch((err) => {
+                  console.log(err.data);
+                });
+        }
+    }
+}
+</script>
+
+<style lang="scss" scoped>
+
+</style>
