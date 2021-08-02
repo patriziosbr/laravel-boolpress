@@ -18,6 +18,8 @@ import About from './pages/About.vue';
 import Contacts from './pages/Contacts.vue';
 import Footer from '../js/components/Footer';
 
+
+
 export default {
     name: 'App',
     components: {

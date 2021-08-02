@@ -5,6 +5,7 @@ import Blog from './pages/Blog'
 import About from './pages/About'
 import Contacts from './pages/Contacts'
 import SinglePost from './pages/SinglePost'
+import NotFound from '../js/components/NotFound';
 
 
 Vue.use(VueRouter)
@@ -37,6 +38,11 @@ const router = new VueRouter({
             path: '/Blog/:slug',
             name: 'single-post',
             component: SinglePost
+        },
+        {
+            path: '*',
+            name: 'not-foud',
+            component: NotFound
         }
     ]
 });
