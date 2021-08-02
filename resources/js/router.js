@@ -38,10 +38,7 @@ const router = new VueRouter({
             name: 'single-post',
             component: SinglePost
         }
-
-
     ]
-
 });
 
 export default router;

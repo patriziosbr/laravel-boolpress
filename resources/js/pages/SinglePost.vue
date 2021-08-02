@@ -1,11 +1,14 @@
 <template>
   <div v-if="post">
       <h3> {{ post.title }}</h3>
+      <div class="my-2">
+          <span v-for="(tag, index) in post.tags" :key="index" class="badge badge-pill badge-info mr-3"> {{ tag.name }} </span>
+      </div>
       <p> {{ post.content }} </p>
+
       <router-link class="btn btn-info" :to="{ name: 'Blog' } " >Back to Blog</router-link>
   </div>
   <div v-else>
-      Loading...
       <Loader />
   </div>
 </template>
@@ -25,7 +28,9 @@ export default {
     },
     created: function() {
         this.getPost(this.$route.params.slug);
-        // console.log(this.$route.params.slug)
+        console.log(this.$route.params)
+        console.log(this.post)
+
     },
     methods: {
         getPost: function(slug) {

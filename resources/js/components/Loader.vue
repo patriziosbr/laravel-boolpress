@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="load">
     <svg xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57" stroke="#242424">
         <g fill="none" fill-rule="evenodd">
             <g transform="translate(1 1)" stroke-width="2">
@@ -18,7 +18,8 @@
             </g>
         </g>
     </svg>
-  </div>
+    <h5 class="my-3">Loading...</h5>
+  </div >
 </template>
 
 <script>
@@ -28,5 +29,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+    .load {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      
+    }
 </style>

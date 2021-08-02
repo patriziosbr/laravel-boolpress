@@ -1,30 +1,35 @@
 <template>
-  <div>
+  <div v-if="posts.length > 1">
         <div class="row">
             <Card class="col-4 d-flex justify-content-center" v-for="post in posts" :key="post.id" :item="post" />
         </div>
         <div class="row ">
             <div class="col-12 text-center">
 
-            <button v-show="(currentPage > 1)" @click="callApi(currentPage-1)" class="btn btn-info m-3">Prev</button>
+                <button v-show="(currentPage > 1)" @click="callApi(currentPage-1)" class="btn btn-info m-3">Prev</button>
 
-            <button v-for="n in lastPage" :key="n" class="mx-2" :class="(n == currentPage) ? 'btn btn-info' : 'btn btn-light'" @click="callApi(currentPage = n)">{{ n }}</button>
+                <button v-for="n in lastPage" :key="n" class="mx-2" :class="(n == currentPage) ? 'btn btn-info' : 'btn btn-light'" @click="callApi(currentPage = n)">{{ n }}</button>
 
-            <button v-show="(currentPage < lastPage)" @click="callApi(currentPage+1)" class="btn btn-info m-3">Next</button>
+                <button v-show="(currentPage < lastPage)" @click="callApi(currentPage+1)" class="btn btn-info m-3">Next</button>
 
+            </div>
         </div>
-        </div>
+  </div>
+  <div v-else>
+    <loader />
   </div>
 </template>
 
 <script>
 import Card from '../components/Card.vue'
+import Loader from '../components/Loader.vue'
 
 
 export default {
     name: 'Blog',
     components: {
-        Card
+        Card,
+        Loader
     },
     data() {
         return{
@@ -68,7 +73,6 @@ export default {
 }
 
 </script>
-
-<style>
+<style lang="scss" scoped>
 
 </style>

@@ -33,8 +33,5 @@ export default {
 
 <style lang="scss">
     @import '../sass/front.scss/';
-    .main-box {
-        height: calc(100vh - 130px);
-        padding: 100px 0;
-    }
+
 </style>

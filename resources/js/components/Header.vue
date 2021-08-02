@@ -2,7 +2,7 @@
   <section>
       <nav class="d-flex align-content-end justify-content-center">
           <ul class="d-flex align-items-center">
-              <li :class="(links.active) ? 'active' : '' "   v-for="(links, index) in navLinks" :key="index">
+              <li :class="(links.active) ? 'router-link-exact-active' : '' "   v-for="(links, index) in navLinks" :key="index">
                   <router-link :to="links.route">
                       {{ links.link }}
                   </router-link>
@@ -65,9 +65,12 @@ nav {
                 vertical-align: middle;
                 display: inline-block;
                 padding: 8px 16px;
+                border-radius: 5px 5px 0 0;
             }
-            &.active,
-            &:hover {
+            a.router-link-exact-active {
+                background-color: darken($color: #f1f4f9, $amount: 3);
+            }
+            a:hover {
                 background-color: darken($color: #f1f4f9, $amount: 3);
             }
         }
