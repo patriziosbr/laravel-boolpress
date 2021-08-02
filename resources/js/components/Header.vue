@@ -3,9 +3,9 @@
       <nav class="d-flex align-content-end justify-content-center">
           <ul class="d-flex align-items-center">
               <li :class="(links.active) ? 'active' : '' "   v-for="(links, index) in navLinks" :key="index">
-                  <a href="#">
+                  <router-link :to="links.route">
                       {{ links.link }}
-                  </a>
+                  </router-link>
               </li>
           </ul>
       </nav>
@@ -20,18 +20,22 @@ export default {
             navLinks: [        
                 {
                     link: 'home',
-                    active: true
+                    route: '/',
+                    active: false
                 },
                 {
                     link: 'Blog',
+                    route: '/Blog',
                     active: false
                 },
                 {
                     link: 'chi siamo',
+                    route: '/About',
                     active: false
                 },
                 {
                     link: 'contatti',
+                    route: '/Contacts',
                     active: false
                 }
             ] 

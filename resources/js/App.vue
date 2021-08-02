@@ -13,6 +13,9 @@
 <script>
 import Header from '../js/components/Header.vue';
 import Home from '../js/pages/Home.vue';
+import Blog from './pages/Blog.vue';
+import About from './pages/About.vue';
+import Contacts from './pages/Contacts.vue';
 import Footer from '../js/components/Footer';
 
 export default {
@@ -20,6 +23,9 @@ export default {
     components: {
         Header,
         Home,
+        Blog,
+        About,
+        Contacts,
         Footer
     }
 }
