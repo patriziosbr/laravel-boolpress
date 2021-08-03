@@ -2,7 +2,8 @@
   <div v-if="post">
       <div class="d-flex align-items-center">
         <h3 class="mr-3"> {{ post.title }}</h3>
-        <small class="badge badge-success"> {{ post.category.name}} </small>
+        <small v-if="post.category != null " class="badge badge-success"> {{ post.category.name }} </small>
+        <small v-else class="badge badge-success"> no category </small>
       </div>
       <div class="my-2">
           <span v-for="(tag, index) in post.tags" :key="index" class="badge badge-pill badge-info mr-3"> {{ tag.name }} </span>

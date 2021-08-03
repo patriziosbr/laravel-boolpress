@@ -2284,6 +2284,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SiglePost',
@@ -4191,9 +4192,13 @@ var render = function() {
               _vm._v(" " + _vm._s(_vm.post.title))
             ]),
             _vm._v(" "),
-            _c("small", { staticClass: "badge badge-success" }, [
-              _vm._v(" " + _vm._s(_vm.post.category.name) + " ")
-            ])
+            _vm.post.category != null
+              ? _c("small", { staticClass: "badge badge-success" }, [
+                  _vm._v(" " + _vm._s(_vm.post.category.name) + " ")
+                ])
+              : _c("small", { staticClass: "badge badge-success" }, [
+                  _vm._v(" no category ")
+                ])
           ]),
           _vm._v(" "),
           _c(
