@@ -3769,10 +3769,7 @@ var render = function() {
           _vm._l(_vm.navLinks, function(links, index) {
             return _c(
               "li",
-              {
-                key: index,
-                class: links.active ? "router-link-exact-active" : ""
-              },
+              { key: index },
               [
                 _c("router-link", { attrs: { to: links.route } }, [
                   _vm._v(

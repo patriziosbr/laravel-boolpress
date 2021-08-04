@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-{{-- @dd($posts) --}}
+{{-- @dd($post) --}}
 {{-- @dump($tags) --}}
 
 @section('content')
     <div class="container">
         <h1>form da fare</h1>
-        <form action="{{ route('admin.posts.store') }}" method="POST" >
+        <form action="{{ route('admin.posts.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="title">Title: </label>
@@ -29,6 +29,12 @@
                     <small class="text-danger">{{$message}}</small>
                 @enderror
             </div>
+            <div class="input-group">
+                <div class="custom-file">
+                    <input type="file" id="cover" name="cover">
+                </div>
+            </div>
+
             <div class="form-group">
                 <label for="category_id">Categories: </label>
                 <select name="category_id" id="category_id" class="form-control" >

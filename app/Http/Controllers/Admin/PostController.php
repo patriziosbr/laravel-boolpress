@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+
 use App\Post;
 use App\Category;
 use App\Tag;
@@ -48,31 +50,44 @@ class PostController extends Controller
             [
                 'title' => 'required',
                 'author' => 'required',
-                //'slug' => 'required|max:255',
                 'content' => 'required',
                 'post_date' => 'required',
-                'tags' => 'exists:tags,id' //validaizone nel caso di modifica value da ispeziona elemento
+                'tags' => 'exists:tags,id', //validaizone nel caso di modifica value da ispeziona elemento
+                'cover' => 'nullable'
             ]
         );
 
         $data = $request->all();
 
-        // dd($data); 
+        // dd($data); //file img presente
         $newPost = new Post();
 
-        $newPost->title = $data['title'];
-        $newPost->author = $data['author'];
-        $newPost->content = $data['content'];
-        $newPost->post_date = $data['post_date'];
-        // $newPost->slug = $data['title'] . '-' . $data['author'];
-        $slug = $data['title'] . '-' . $data['author'];
-        $newPost->slug = Str::slug($slug, '-');
+        // $newPost->title = $data['title'];
+        // $newPost->author = $data['author'];
+        // $newPost->content = $data['content'];
+        // $newPost->post_date = $data['post_date'];
+        // // $newPost->slug = $data['title'] . '-' . $data['author'];
+        // $slug = $data['title'] . '-' . $data['author'];
+        // $newPost->slug = Str::slug($slug, '-');
+        // $newPost->category_id = $data['category_id'];
         //al posto di tutto questo che precede 
         // newPost->fill($data); ma c'è da aggiungere la variabile protected $fillable = [];
-        $newPost->category_id = $data['category_id'];
-        
-        $newPost->save();
 
+        $slug = $data['title'] . '-' . $data['author'];
+        $data['slug'] = Str::slug($slug, '-');
+
+        // dd($data);
+        if(array_key_exists('cover', $data)) {
+            $img_path = Storage::put('post_covers', $data['cover']);
+            $data['cover'] = $img_path;
+        }
+
+        $newPost->fill($data);
+
+        // dump($newPost);
+        // dd($data);
+        $newPost->save();
+    
         if(array_key_exists('tags', $data)) {
             $newPost->tags()->attach($data["tags"]);       
         }

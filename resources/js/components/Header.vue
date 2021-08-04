@@ -2,7 +2,7 @@
   <section>
       <nav class="d-flex align-content-end justify-content-center">
           <ul class="d-flex align-items-center">
-              <li :class="(links.active) ? 'router-link-exact-active' : '' "   v-for="(links, index) in navLinks" :key="index">
+              <li v-for="(links, index) in navLinks" :key="index">
                   <router-link :to="links.route">
                       {{ links.link }}
                   </router-link>

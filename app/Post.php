@@ -10,10 +10,11 @@ class Post extends Model
     protected $fillable = [
         'title',
         'author',
-        // 'slug',
+        'slug',
         'content',
         'post_date',
-        'category_id'
+        'category_id',
+        'cover'
     ];
     public function category(){
         //relazione
