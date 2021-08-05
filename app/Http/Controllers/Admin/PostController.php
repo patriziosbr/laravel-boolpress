@@ -104,6 +104,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::findOrfail($id);
+    
         return view('admin.posts.show', compact('post'));
     }
 
@@ -136,15 +137,28 @@ class PostController extends Controller
                 'author' => 'required',
                 //'slug' => 'required|max:255',
                 'content' => 'required',
-                'post_date' => 'required'
+                'post_date' => 'required',
+                'cover' => 'nullable'
             ]
         );
         $data = $request->all();
 
         $slug = $data['title'] . '-' . $data['author'];
         $post->slug = Str::slug($slug, '-');
+	
+        // dd($post);
+        if(array_key_exists('cover', $data)) {
+		    //la delete va fatta solo se il file è presente nel db
+		    if($post->cover){
+			    Storage::delete($post->cover);
+		    }
+            $data['cover'] = Storage::put('post_covers', $data['cover']);
+	    }	
         
+        // dd($data);
         $post->update($data);
+
+                
 
         
         if(array_key_exists('tags', $data)) {

@@ -23,11 +23,25 @@
                 <label for="author">Author: </label>
                 <input class="form-control" type="text" placeholder="Post author" id="author" name="author" value="{{ old('author', $post->author) }}">
             </div>
-            <div class="form-group">
+            <div class="form-group mb-5">
                 <label for="post_date">Date: </label>
                 <input class="form-control" type="date" id="post_date" name="post_date" value="{{ old('post_date', $post->post_date) }}">
             </div>
-            <div class="form-group">
+
+            <div class="input-group">
+                <div class="custom-file my-5">
+
+                    @if($post->cover)
+                    <div class="my-5 mr-3" >
+                        <img style="height:200px" src="{{ asset('storage/' . $post->cover) }}" alt="{{ $post->cover }}">
+                    </div>
+                    @endif
+                    <input type="file" id="cover" name="cover">
+                </div>
+            </div>
+
+
+            <div class="form-group mt-5">
                 <label for="category_id">Categories: </label>
                 <select name="category_id" id="category_id" class="form-control" >
                     {{-- <option value="">--Nessuna categoria--</option> --}}
