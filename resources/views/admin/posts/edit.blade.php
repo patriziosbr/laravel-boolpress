@@ -46,9 +46,14 @@
                 <select name="category_id" id="category_id" class="form-control" >
                     <option value="">--Nessuna categoria--</option>
                     @foreach ($categories as $category)
-                        <option value="{{ $category->id }}" {{ ($category->id == $post->category->id) ? 'selected' : '' }}>
-                            {{ $category->name }}
-                        </option>
+                    {{-- accrocco micidiale  --}}
+                        @if ($post->category)
+                            <option value="{{ $category->id }}" {{ ($category->id == $post->category->id ) ? 'selected' : '' }}>
+                            {{ $category->name }} </option>
+                        @else
+                        <option value="{{ $category->id }}" {{ ($category->id == old('category_id') ) ? 'selected' : '' }}>
+                            {{ $category->name }} </option>
+                        @endif
                     @endforeach
                 </select>
             </div>
