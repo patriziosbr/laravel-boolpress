@@ -31,6 +31,7 @@
             </div>
             <div class="input-group">
                 <div class="custom-file">
+                    {{-- <img style="height:200px" src="{{ asset('storage/' . $post->cover) }}" alt="{{ $post->cover }}"> --}}
                     <input type="file" id="cover" name="cover">
                 </div>
             </div>

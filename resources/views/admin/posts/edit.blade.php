@@ -12,7 +12,7 @@
 		@else
 			<span class="badge badge-info"> nessuna categoria</span>
 		@endif </h1>
-        <form action="{{ route('admin.posts.update', $post->id) }}" method="POST" >
+        <form action="{{ route('admin.posts.update', $post->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
             <div class="form-group">

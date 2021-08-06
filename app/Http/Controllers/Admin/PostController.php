@@ -158,9 +158,7 @@ class PostController extends Controller
         // dd($data);
         $post->update($data);
 
-                
 
-        
         if(array_key_exists('tags', $data)) {
             $post->tags()->sync($data["tags"]);	
         } else {
