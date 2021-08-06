@@ -176,7 +176,12 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Post $post)
-    {
+    {   
+        //NON HO CAPITO - LA DELETE FUNZIONA ANCHE SENZA 
+        // if($post->cover){
+		// 	Storage::delete($post->cover);
+		// }
+
         $post->delete();
         return redirect()->route('admin.posts.index');
     }

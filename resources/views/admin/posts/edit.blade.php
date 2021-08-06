@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 {{-- @dd($post) --}}
-{{-- @dump($post->tags) --}}
+@dump($categories)
 {{-- @dump($tags) --}}
 
 @section('content')
@@ -10,7 +10,7 @@
         @if ($post->category)
 			<a href=" {{ route('admin.categories.show', $post->category->id) }} " class="badge badge-info"> {{ $post->category->name }} </a>
 		@else
-			<span class="badge badge-info"> nessuna categoria</span>
+			<span class="badge badge-info">nessuna categoria</span>
 		@endif </h1>
         <form action="{{ route('admin.posts.update', $post->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -44,9 +44,9 @@
             <div class="form-group mt-5">
                 <label for="category_id">Categories: </label>
                 <select name="category_id" id="category_id" class="form-control" >
-                    {{-- <option value="">--Nessuna categoria--</option> --}}
+                    <option value="">--Nessuna categoria--</option>
                     @foreach ($categories as $category)
-                        <option value="{{ $category->id }}" {{ ($category->id == old('category_id')) ? 'selected' : '' }}>
+                        <option value="{{ $category->id }}" {{ ($category->id == $post->category->id) ? 'selected' : '' }}>
                             {{ $category->name }}
                         </option>
                     @endforeach
